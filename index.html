@@ -647,7 +647,9 @@
     if(filmReady)return filmReady;
     if(film.dataset.poster){film.poster=film.dataset.poster;}
     filmReady=new Promise(res=>{
-      if(film.canPlayType('application/vnd.apple.mpegurl')){film.src=film.dataset.hls;return res();}
+      // Apple devices: Safari's own HLS player adapts well. Everyone else (incl. Chrome, which now also claims
+      // native HLS) gets hls.js so we control the starting quality.
+      if(/Apple/.test(navigator.vendor)&&film.canPlayType('application/vnd.apple.mpegurl')){film.src=film.dataset.hls;return res();}
       const sc=document.createElement('script');
       sc.src='https://cdn.jsdelivr.net/npm/hls.js@1.7.3/dist/hls.light.min.js';
       sc.onload=()=>{

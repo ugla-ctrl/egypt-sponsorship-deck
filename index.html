@@ -215,60 +215,89 @@
     .bg{position:fixed}
     .cover .logo{width:86%}
   }
-  @media (prefers-reduced-motion:reduce){.slide.active .bg.kb img{animation:none}.slide{transition:none}}
+  @media (prefers-reduced-motion:reduce){.slide.active .bg.kb img{animation:none}.slide{transition:none}#ctr button{transition:none}}
+  /* v2: skill pass */
+  .src{font-family:var(--body);font-style:italic;font-size:calc(var(--u)*.95);color:var(--muted);margin-top:calc(var(--u)*1.4)}
+  .dark .src{color:#f3ead799}
+  .prepared{font-family:var(--label);font-size:calc(var(--u)*1);letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);margin-top:calc(var(--u)*1.6)}
+  .prepared[hidden]{display:none}
+  .tier .why{font-family:var(--label);font-size:calc(var(--u)*.72);letter-spacing:.16em;text-transform:uppercase;color:var(--kohl-soft);border-top:1px solid var(--hair);padding-top:calc(var(--u)*.7);margin-top:auto}
+  .cards.c5{grid-template-columns:repeat(5,1fr)}
+  .card .one{display:inline-block;font-family:var(--label);font-size:calc(var(--u)*.68);letter-spacing:.16em;text-transform:uppercase;border:1px solid currentColor;border-radius:20px;padding:.15em .8em;margin-top:calc(var(--u)*.7);opacity:.8}
+  .goal .num{font-family:var(--display);font-size:calc(var(--u)*2.6);line-height:1;color:var(--terra);margin-bottom:calc(var(--u)*.6)}
+  .contact.primary .nm{font-size:calc(var(--u)*3.4)}
+  .contact.second .nm{font-size:calc(var(--u)*2.2)}
+  .cta{display:inline-block;margin-top:calc(var(--u)*2.4);font-family:var(--label);font-size:calc(var(--u)*1.05);letter-spacing:.2em;text-transform:uppercase;color:#0f0c09;background:var(--gold-soft);border-radius:40px;padding:calc(var(--u)*.9) calc(var(--u)*2.2);text-decoration:none}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  @media (max-width:900px) and (orientation:portrait){ .cards.c5{grid-template-columns:1fr 1fr} .cards[style*="width"]{width:auto!important;grid-template-columns:1fr} }
+  @media print{
+    @page{size:1920px 1080px;margin:0}
+    html,body{overflow:visible!important;height:auto!important;background:#fff!important}
+    #frame{position:static;padding:0;display:block}
+    #stage{width:1920px!important;height:auto!important;aspect-ratio:auto!important;border-radius:0;box-shadow:none;container-type:normal;overflow:visible}
+    .slide{position:relative!important;inset:auto;width:1920px;height:1080px;opacity:1!important;visibility:visible!important;container-type:size;break-after:page;page-break-after:always;overflow:hidden}
+    .slide .bg{position:absolute!important}
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;animation:none!important;transition:none!important}
+    #ctr,.edge,.soundbtn{display:none!important}
+    .dark .card{background:rgba(15,12,9,.6)!important;backdrop-filter:none!important}
+  }
 </style>
 </head>
 <body>
 <div class="edge l" aria-hidden="true"></div><div class="edge r" aria-hidden="true"></div>
+<div id="live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 <div id="frame"><div id="stage">
 
   <!-- 1 · COVER -->
   <section class="slide dark cover active">
-    <div class="bg kb"><img src="media/eclipse-luxor.jpg" alt=""></div>
+    <div class="bg kb"><img src="media/eclipse-luxor.jpg" alt="" fetchpriority="high"></div>
     <div class="pad">
       <div class="date">30 JULY TO 9 AUGUST 2027</div>
+      <h1 class="sr-only">Egypt Eclipse 2027 Sponsorship Deck</h1>
       <img class="logo" src="media/egypt-eclipse-logo.png" alt="Egypt Eclipse">
       <div class="rule" style="color:var(--limestone)"></div>
       <p class="tag">A once-in-many-lifetimes journey to the longest remaining total solar eclipse of the century in Luxor, and the 8/8 Lion's Gate at the Pyramids of Giza.</p>
+      <div class="prepared" id="prepared" hidden></div>
     </div>
     <div class="kind">SPONSORSHIP DECK</div>
   </section>
 
-  <!-- 2 · THE INVITATION -->
+  <!-- 2 · THE MOMENT -->
   <section class="slide fit">
-    <div class="chrome"><span class="sec">Overview</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
+    <div class="chrome"><span class="sec">The Moment</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad center">
       <div class="eyebrow">The Invitation</div>
-      <h2>Meet Totality in Luxor.</h2>
-      <p>On 2 August 2027, the Sun will disappear over the Nile for six minutes and twenty-three seconds. The world will not see a longer totality on land for another eighty-seven years. We are gathering to meet this moment on purpose, with connection, awe, remembrance, discovery, and intentionality.</p>
+      <h2>Six minutes and twenty-three seconds of darkness over the Nile.</h2>
+      <p>On 2 August 2027 the Sun disappears over Luxor. The world will not see a longer totality on land for another eighty-seven years. We are gathering to meet this moment on purpose, with connection, awe, remembrance, discovery, and intentionality.</p>
       <div class="stats s3" style="width:calc(var(--u)*60);margin-left:auto;margin-right:auto">
         <div class="stat"><div class="n">6:23</div><div class="l">Minutes of totality</div></div>
         <div class="stat"><div class="n">87</div><div class="l">Years until a longer one on land</div></div>
         <div class="stat"><div class="n">10</div><div class="l">Days, Aswan to Giza</div></div>
       </div>
+      <p class="src">Totality figures as published by Egypt Eclipse, egypt-eclipse.com</p>
     </div>
   </section>
 
   <!-- 3 · THE PLACE -->
   <section class="slide dark">
-    <div class="bg kb heavy"><img src="media/ceremony-circle.jpg" alt=""></div>
-    <div class="chrome"><span class="sec">Overview</span><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
+    <div class="bg kb heavy"><img data-src="media/ceremony-circle.jpg" alt=""></div>
+    <div class="chrome"><span class="sec">The Moment</span><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad">
       <div class="eyebrow">The Place</div>
-      <h2>In the City of <em>the Sun.</em></h2>
-      <p style="max-width:46ch">Luxor, one of the oldest continuously inhabited places on Earth, was built over the ruins of Thebes, capital of Egypt during the New Kingdom. We will view the eclipse from private land on the West Bank of the Nile, near the Colossi of Memnon, the Valley of the Queens, and the temple of Hatshepsut, Egypt's famous female pharaoh.</p>
+      <h2>Totality falls on <em>the City of the Sun.</em></h2>
+      <p style="max-width:46ch">Luxor, one of the oldest continuously inhabited places on Earth, was built over the ruins of Thebes, capital of Egypt during the New Kingdom. We view the eclipse from private land on the West Bank of the Nile, near the Colossi of Memnon, the Valley of the Queens, and the temple of Hatshepsut, Egypt's famous female pharaoh.</p>
     </div>
   </section>
 
-  <!-- 4 · THE JOURNEY -->
+  <!-- 4 · THE VOYAGE -->
   <section class="slide">
     <div class="chrome"><span class="sec">The Experience</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad">
       <div class="split wide">
         <div>
           <div class="eyebrow">The Voyage</div>
-          <h2>A passage through time.</h2>
-          <p>Artists, scientists, explorers, builders, and seekers travel the Nile together toward Luxor, where ancient civilizations aligned architecture and daily life with the movement of the sky. Every path leads to the same moment.</p>
+          <h2>Every path leads to the same moment.</h2>
+          <p>Artists, scientists, explorers, builders, and seekers travel the Nile together toward Luxor, where ancient civilizations aligned architecture and daily life with the movement of the sky.</p>
           <div class="cards c2" style="margin-top:calc(var(--u)*1.8)">
             <div class="card"><div class="meta">36 Hours · 1 to 2 Aug</div><h3>The Eclipse Gathering</h3><p>New Moon Opening Ceremony, Eclipse Day, and music into the evening on the West Bank.</p></div>
             <div class="card"><div class="meta">7 Nights · 30 Jul to 6 Aug</div><h3>The Nile River Cruise</h3><p>Aswan to Luxor and back across two 5-star boats, with temples, talks, and ceremony.</p></div>
@@ -283,7 +312,7 @@
 
   <!-- 5 · FILM -->
   <section class="slide dark">
-    <div class="vidwrap"><video id="film" src="media/announcement.mp4" poster="media/video-poster.jpg" playsinline loop preload="none"></video></div>
+    <div class="vidwrap"><video id="film" src="media/announcement.mp4" poster="media/video-poster.jpg" playsinline loop preload="none" data-prevent-swipe aria-label="Egypt Eclipse announcement film"></video></div>
     <button class="soundbtn" id="soundbtn" type="button">Tap for sound</button>
   </section>
 
@@ -292,8 +321,8 @@
     <div class="chrome"><span class="sec">The Experience</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad">
       <div class="eyebrow">The Programming</div>
-      <h2>What fills the days <em>between monuments.</em></h2>
-      <p>Not a traditional festival. Every day weaves together the ancient and the speculative: music, art, a speaker series, health and wellness, held at a human scale and led by the people in the room.</p>
+      <h2>Ten days between the ancient <em>and the speculative.</em></h2>
+      <p>Not a traditional festival. Music, art, a speaker series, health and wellness, held at a human scale and led by the people in the room.</p>
       <div class="cards c4">
         <div class="card photo"><div class="ph"><img data-src="media/jaz-crown-prince-drone.jpg" alt=""></div><div class="tx"><h3>On the River</h3><p>Temple tours at dawn, talks while sailing the Nile, music in the evenings.</p></div></div>
         <div class="card photo"><div class="ph"><img data-src="media/egypt-humans-07.jpg" alt=""></div><div class="tx"><h3>Heritage</h3><p>Egyptologist-led visits to Karnak, Luxor Temple, Edfu, Kom Ombo, Philae, and Abu Simbel.</p></div></div>
@@ -303,13 +332,36 @@
     </div>
   </section>
 
-  <!-- 7 · COUNCIL -->
+  <!-- 7 · AUDIENCE -->
+  <section class="slide">
+    <div class="chrome"><span class="sec">The Audience</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
+    <div class="pad">
+      <div class="split">
+        <div class="frame-img"><img data-src="media/community-access.jpg" alt="" style="object-position:center 40%"></div>
+        <div>
+          <div class="eyebrow">Who's in the Path</div>
+          <h2>A small, global circle of <em class="nw">change-makers.</em></h2>
+          <p>Heart-centered artists, social impact entrepreneurs, world musicians, and conscious capitalists. Egypt is intentionally intimate, so partners meet the room face to face over ten days.</p>
+          <div class="stats s3" style="margin-top:calc(var(--u)*1.8)">
+            <div class="stat"><div class="n">75</div><div class="l">Countries</div></div>
+            <div class="stat"><div class="n">35</div><div class="l">Average age</div></div>
+            <div class="stat"><div class="n">53/47</div><div class="l">Male / female</div></div>
+          </div>
+          <p class="src">Iceland Eclipse 2026 audience, our most recent edition. Egypt figures reported to partners after the event.</p>
+          <blockquote style="margin-top:calc(var(--u)*1.6);font-size:calc(var(--u)*1.5)">"70+ countries, and I have never traveled with people so amazingly present."</blockquote>
+          <cite>Sara A. · Scouting voyage, January 2026</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · COUNCIL -->
   <section class="slide fit">
-    <div class="chrome"><span class="sec">The Community</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
+    <div class="chrome"><span class="sec">The Audience</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad center">
       <div class="eyebrow">The Trilogy Council</div>
-      <h2>The voices in the room.</h2>
-      <p>Astronauts, explorers, founders, and artists shaping the gathering alongside our hosts in Egypt.</p>
+      <h2>Astronauts and explorers travel with us.</h2>
+      <p>The council shaping the gathering alongside our hosts in Egypt.</p>
       <div class="people">
         <div class="person"><div class="ph"><img data-src="media/sian-proctor.jpg" alt=""></div><div class="nm">Dr. Sian Proctor</div><div class="rl">Astronaut, Inspiration4 mission pilot</div></div>
         <div class="person"><div class="ph"><img data-src="media/sara-sabry.jpg" alt=""></div><div class="nm">Sara Sabry</div><div class="rl">First Egyptian, Arab, and African woman in space</div></div>
@@ -321,30 +373,29 @@
     </div>
   </section>
 
-  <!-- 8 · AUDIENCE -->
+  <!-- 9 · WHY IT MATTERS TO YOU -->
   <section class="slide">
-    <div class="chrome"><span class="sec">The Community</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
+    <div class="chrome"><span class="sec">For Partners</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad">
-      <div class="split">
-        <div class="frame-img"><img data-src="media/community-access.jpg" alt="" style="object-position:center 40%"></div>
-        <div>
-          <div class="eyebrow">The Audience</div>
-          <h2>An intimate circle of <em class="nw">change-makers.</em></h2>
-          <p>Heart-centered artists, social impact entrepreneurs, world musicians, and conscious capitalists from around the globe. Egypt is intentionally small, so every partner meets the room face to face over ten days, not in passing at a gate.</p>
-          <blockquote style="margin-top:calc(var(--u)*2.2)">"70+ countries, and I have never traveled with people so amazingly present."</blockquote>
-          <cite>Sara A. · Scouting voyage, January 2026</cite>
-        </div>
+      <div class="eyebrow">Why It Matters to Your Brand</div>
+      <h2>Be part of the moment <em>they will never forget.</em></h2>
+      <p>Brands don't need more impressions. They need meaning. Egypt Eclipse places your company inside a once-in-a-lifetime passage, with the people who will tell its story for years.</p>
+      <div class="cards c4">
+        <div class="card goal"><div class="num">I</div><h3>Reach global travelers</h3><p>A curated international audience that invests in rare, transformative travel.</p></div>
+        <div class="card goal"><div class="num">II</div><h3>Earn meaning</h3><p>Associate your brand with awe, heritage, science, and wellbeing, not with noise.</p></div>
+        <div class="card goal"><div class="num">III</div><h3>Own the content</h3><p>Stories and imagery from the Nile, Luxor's temples, and the Pyramids of Giza.</p></div>
+        <div class="card goal"><div class="num">IV</div><h3>Build loyalty</h3><p>A community that follows the eclipse from chapter to chapter of the Trilogy.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- 9 · PROOF: ICELAND -->
+  <!-- 10 · PROOF: ICELAND -->
   <section class="slide dark proof">
     <div class="bg even"><img data-src="media/video-poster.jpg" alt=""></div>
     <div class="chrome"><span class="sec">Track Record</span><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad center">
       <div class="eyebrow">Iceland Eclipse 2026 · The First Chapter</div>
-      <h2>We have done this <em>before.</em></h2>
+      <h2>Iceland Eclipse <em>proved the model.</em></h2>
       <p>In August 2026, IMXP produced Iceland Eclipse on the Snæfellsnes Peninsula, a five-day gathering beneath totality, covered by The New York Times and CNN. Egypt carries that community to the Nile.</p>
       <div class="stats s4" style="width:calc(var(--u)*76);margin-left:auto;margin-right:auto">
         <div class="stat"><div class="n">4,200</div><div class="l">Participants</div></div>
@@ -352,17 +403,18 @@
         <div class="stat"><div class="n">250</div><div class="l">Artists &amp; speakers</div></div>
         <div class="stat"><div class="n">50M</div><div class="l">Impressions</div></div>
       </div>
+      <p class="src">Iceland Eclipse 2026 recap figures, IMXP</p>
     </div>
   </section>
 
-  <!-- 10 · TRILOGY -->
+  <!-- 11 · TRILOGY -->
   <section class="slide dark">
     <div class="bg kb even"><img data-src="media/eclipse-trilogy-map.jpg" alt=""></div>
     <div class="chrome"><span class="sec">Track Record</span><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad">
       <div class="eyebrow">The Eclipse Trilogy</div>
-      <h2>Three eclipses. Three summers. <em>One arc.</em></h2>
-      <p>Partners in Egypt join a story that began in Iceland and continues to Australasia, with a community that follows the shadow from one chapter to the next.</p>
+      <h2>Partner once, <em>follow the whole arc.</em></h2>
+      <p>Egypt is the middle chapter of a story that began in Iceland and continues to Australasia. Partnerships spanning Egypt 2027 and Australasia 2028 are available on request.</p>
       <div class="arc">
         <div class="card"><div class="yr">2026</div><h3 style="margin-top:calc(var(--u)*.8)">Iceland · Initiation</h3><p class="small">Where strangers became a circle beneath the northern sky.</p></div>
         <div class="card here"><div class="yr">2027</div><h3 style="margin-top:calc(var(--u)*.8)">Egypt · Activation</h3><p class="small">The middle chapter: one of the longest totalities of the century.</p></div>
@@ -371,21 +423,21 @@
     </div>
   </section>
 
-  <!-- 11 · WHY PARTNER -->
+  <!-- 12 · OUR PROMISE -->
   <section class="slide">
     <div class="chrome"><span class="sec">Sponsorship</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad">
       <div class="split wide">
         <div>
           <div class="eyebrow">Our Promise</div>
-          <h2>Partnerships built <em>with intention.</em></h2>
+          <h2>Partners deepen the experience, <em>never interrupt it.</em></h2>
           <p>Egypt Eclipse works with its partners to create strategic, meaningful collaborations that place your brand inside the experience rather than beside it.</p>
           <p style="margin-top:calc(var(--u)*1.2)">Through on-site activations, branding, media, and hosted moments, your company meets a globally engaged audience at one of the rarest events of their lives. Every level can be tailored to your objectives.</p>
           <ul class="ticks" style="margin-top:calc(var(--u)*1.8)">
             <li>Presence at the moment of totality, filmed and shared worldwide</li>
-            <li>Ten days of close contact with an influential, affluent community</li>
+            <li>Ten days of close contact with an influential community</li>
             <li>Story-rich content from the Nile, Luxor, and Giza</li>
-            <li>A path into the full Eclipse Trilogy through 2028</li>
+            <li>A path into the Eclipse Trilogy through 2028</li>
           </ul>
         </div>
         <div class="frame-img"><img data-src="media/columns.jpg" alt="" style="object-position:center 60%"></div>
@@ -393,81 +445,117 @@
     </div>
   </section>
 
-  <!-- 12 · TIERS -->
+  <!-- 13 · TIERS -->
   <section class="slide fit">
     <div class="chrome"><span class="sec">Sponsorship</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad center">
       <div class="eyebrow">Partnership Tiers</div>
-      <h2>Four ways to stand in the shadow.</h2>
+      <h2>Four bands, plus one built for you.</h2>
       <p>These opportunities are the baseline, with room to imagine and build together. Pricing and final inclusions are shared on request.</p>
-      <div class="cards c4" style="margin-top:calc(var(--u)*2.4)">
-        <div class="card tier"><div class="glyph g-solar"></div><div class="name">Solar</div><div class="count">1 Partner · Title</div><p class="who">"Your Company presents Egypt Eclipse." Named presence across every chapter of the journey.</p></div>
-        <div class="card tier"><div class="glyph g-lunar"></div><div class="name">Lunar</div><div class="count">2 Partners · Supporting</div><p class="who">Supporting sponsor with a signature activation at the Eclipse Gathering.</p></div>
-        <div class="card tier"><div class="glyph g-orbital"></div><div class="name">Orbital</div><div class="count">3 Partners · Participating</div><p class="who">Participating sponsor across the river voyage and Eclipse Day.</p></div>
-        <div class="card tier"><div class="glyph g-sat"></div><div class="name">Satellite</div><div class="count">5 Partners · Named</div><p class="who">Named sponsor with product seeding and community reach.</p></div>
+      <div class="cards c5" style="margin-top:calc(var(--u)*2.2)">
+        <div class="card tier"><div class="glyph g-solar"></div><div class="name">Solar</div><div class="count">1 Partner · Title</div><p class="who">"Your Company presents Egypt Eclipse." Named across every chapter of the journey.</p><div class="why">Access &amp; content</div></div>
+        <div class="card tier"><div class="glyph g-lunar"></div><div class="name">Lunar</div><div class="count">2 Partners · Supporting</div><p class="who">Supporting sponsor with a signature activation at the Eclipse Gathering.</p><div class="why">Presence &amp; hosting</div></div>
+        <div class="card tier"><div class="glyph g-orbital"></div><div class="name">Orbital</div><div class="count">3 Partners · Participating</div><p class="who">Participating sponsor across the river voyage and Eclipse Day.</p><div class="why">Presence</div></div>
+        <div class="card tier"><div class="glyph g-sat"></div><div class="name">Satellite</div><div class="count">5 Partners · Named</div><p class="who">Named sponsor with product seeding and community reach.</p><div class="why">Recognition</div></div>
+        <div class="card tier"><div class="glyph" style="border:1px solid var(--gold);background:radial-gradient(circle,var(--gold-soft) 18%,transparent 20%)"></div><div class="name">Custom</div><div class="count">By Conversation</div><p class="who">Bespoke, fully branded experiences in niche categories.</p><div class="why">Built together</div></div>
       </div>
-      <p class="small" style="margin-top:calc(var(--u)*1.8)">Custom: bespoke, fully branded experiences in niche categories. See Signature Experiences.</p>
     </div>
   </section>
 
-  <!-- 13 · INCLUSIONS -->
+  <!-- 14 · INCLUSIONS -->
   <section class="slide">
     <div class="chrome"><span class="sec">Sponsorship</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad">
       <div class="eyebrow" style="margin-top:calc(var(--u)*1.2)">Package Inclusions</div>
-      <h2 style="margin-bottom:0">What each tier carries.</h2>
+      <h2 style="margin-bottom:0">Higher tiers buy access, not just logos.</h2>
       <div class="matrixwrap">
       <table class="matrix">
-        <thead><tr><th></th><th>Solar</th><th>Lunar</th><th>Orbital</th><th>Satellite</th></tr></thead>
+        <thead><tr><th scope="col"><span class="sr-only">Benefit</span></th><th scope="col">Solar</th><th scope="col">Lunar</th><th scope="col">Orbital</th><th scope="col">Satellite</th></tr></thead>
         <tbody>
           <tr class="grp"><td colspan="5">Signage &amp; Branding</td></tr>
-          <tr><td>Naming: "Company presents Egypt Eclipse"</td><td><span class="dot"></span></td><td class="dash">–</td><td class="dash">–</td><td class="dash">–</td></tr>
-          <tr><td>Logo on guest credentials, welcome kits, and event collateral</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot half"></span></td><td><span class="dot half"></span></td></tr>
+          <tr><td>Naming: "Company presents Egypt Eclipse"</td><td><span class="dot" aria-label="Full"></span></td><td class="dash">–</td><td class="dash">–</td><td class="dash">–</td></tr>
+          <tr><td>Logo on guest credentials, welcome kits, and event collateral</td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot half" aria-label="Scaled"></span></td><td><span class="dot half" aria-label="Scaled"></span></td></tr>
           <tr class="grp"><td colspan="5">Media &amp; Promotion</td></tr>
-          <tr><td>Credits in the official Egypt Eclipse film and recap content</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot half"></span></td><td class="dash">–</td></tr>
-          <tr><td>Social and newsletter features across the Eclipse community</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot half"></span></td></tr>
-          <tr><td>Named in press release and official press kit</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot half"></span></td><td><span class="dot half"></span></td></tr>
+          <tr><td>Credits in the official Egypt Eclipse film and recap content</td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot half" aria-label="Scaled"></span></td><td class="dash">–</td></tr>
+          <tr><td>Social and newsletter features across the Eclipse community</td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot half" aria-label="Scaled"></span></td></tr>
+          <tr><td>Named in press release and official press kit</td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot half" aria-label="Scaled"></span></td><td><span class="dot half" aria-label="Scaled"></span></td></tr>
           <tr class="grp"><td colspan="5">On-Site Activation</td></tr>
-          <tr><td>Bespoke brand activation at the Eclipse Gathering</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot half"></span></td><td class="dash">–</td></tr>
-          <tr><td>Product seeding and collateral in guest welcome kits</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+          <tr><td>Bespoke brand activation at the Eclipse Gathering</td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot half" aria-label="Scaled"></span></td><td class="dash">–</td></tr>
+          <tr><td>Product seeding and collateral in guest welcome kits</td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot" aria-label="Full"></span></td></tr>
           <tr class="grp"><td colspan="5">Hospitality</td></tr>
-          <tr><td>Places for your team on the journey</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot half"></span></td><td><span class="dot half"></span></td></tr>
-          <tr><td>Private hosted evening for your guests</td><td><span class="dot"></span></td><td><span class="dot half"></span></td><td class="dash">–</td><td class="dash">–</td></tr>
+          <tr><td>Places for your team on the journey</td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot half" aria-label="Scaled"></span></td><td><span class="dot half" aria-label="Scaled"></span></td></tr>
+          <tr><td>Private hosted evening for your guests</td><td><span class="dot" aria-label="Full"></span></td><td><span class="dot half" aria-label="Scaled"></span></td><td class="dash">–</td><td class="dash">–</td></tr>
         </tbody>
       </table>
       </div>
-      <p class="small" style="margin-top:calc(var(--u)*1.2)"><span class="dot"></span> Full &nbsp;&nbsp; <span class="dot half"></span> Scaled to tier &nbsp;&nbsp; Quantities confirmed with each partner.</p>
+      <p class="small" style="margin-top:calc(var(--u)*1.2)"><span class="dot"></span> Full &nbsp;&nbsp; <span class="dot half"></span> Scaled to tier &nbsp;&nbsp; Quantities confirmed with each partner; benefits may be tailored.</p>
     </div>
   </section>
 
-  <!-- 14 · SIGNATURE EXPERIENCES -->
+  <!-- 15 · SIGNATURE EXPERIENCES -->
   <section class="slide dark">
     <div class="bg kb even"><img data-src="media/giza-pyramids.jpg" alt=""></div>
     <div class="chrome"><span class="sec">Sponsorship</span><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad">
       <div class="eyebrow">Signature Experiences</div>
-      <h2>Put your name on <em>a moment.</em></h2>
-      <p>Title and exclusive branding rights to a single experience, with full photo and video coverage delivered after the event.</p>
+      <h2>Put your name on <em>a single moment.</em></h2>
+      <p>Title and exclusive branding rights to one experience, with full photo and video coverage delivered after the event.</p>
       <div class="cards c3">
-        <div class="card"><div class="meta">2 August · Luxor</div><h3>Eclipse Day</h3><p>"Company presents Totality in Luxor." Six minutes and twenty-three seconds on the West Bank.</p></div>
-        <div class="card"><div class="meta">1 August · Luxor</div><h3>New Moon Ceremony</h3><p>The opening ceremony that begins the 36-hour gathering.</p></div>
-        <div class="card"><div class="meta">30 July to 6 August</div><h3>The Nile Voyage</h3><p>Branded talks and evenings aboard two 5-star boats sailing between Aswan and Luxor.</p></div>
-        <div class="card"><div class="meta">3 August · West Bank</div><h3>Dawn Balloons</h3><p>A sunrise hot air balloon flight over the Valley of the Kings.</p></div>
-        <div class="card"><div class="meta">8 August · Giza</div><h3>Lion's Gate at the Pyramids</h3><p>The 8/8 celebration that closes the journey at Giza.</p></div>
-        <div class="card"><div class="meta">Throughout</div><h3>Eclipse Essentials</h3><p>Co-branded eclipse glasses, cooling, and hydration for the heat of an August totality.</p></div>
+        <div class="card"><div class="meta">2 August · Luxor</div><h3>Eclipse Day</h3><p>"Company presents Totality in Luxor." Six minutes and twenty-three seconds on the West Bank.</p><span class="one">1 partner</span></div>
+        <div class="card"><div class="meta">1 August · Luxor</div><h3>New Moon Ceremony</h3><p>The opening ceremony that begins the 36-hour gathering.</p><span class="one">1 partner</span></div>
+        <div class="card"><div class="meta">30 July to 6 August</div><h3>The Nile Voyage</h3><p>Branded talks and evenings aboard two 5-star boats sailing between Aswan and Luxor.</p><span class="one">1 partner</span></div>
+        <div class="card"><div class="meta">3 August · West Bank</div><h3>Dawn Balloons</h3><p>A sunrise hot air balloon flight over the Valley of the Kings.</p><span class="one">1 partner</span></div>
+        <div class="card"><div class="meta">8 August · Giza</div><h3>Lion's Gate at the Pyramids</h3><p>The 8/8 celebration that closes the journey at Giza.</p><span class="one">1 partner</span></div>
+        <div class="card"><div class="meta">Throughout</div><h3>Eclipse Essentials</h3><p>Co-branded eclipse glasses, cooling, and hydration for the heat of an August totality.</p><span class="one">1 partner</span></div>
       </div>
     </div>
   </section>
 
-  <!-- 15 · PATRONAGE -->
+  <!-- 16 · ACTIVATION IDEAS -->
+  <section class="slide">
+    <div class="chrome"><span class="sec">Sponsorship</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
+    <div class="pad">
+      <div class="split wide">
+        <div>
+          <div class="eyebrow">Activation Ideas</div>
+          <h2>Starting points <em>to build together.</em></h2>
+          <p>Every activation is shaped with the partner and the place, so it feels like part of the journey.</p>
+          <div class="cards c2" style="margin-top:calc(var(--u)*1.8)">
+            <div class="card"><h3>Space &amp; Science</h3><ul class="ticks"><li>Branded eclipse viewing glasses</li><li>Astronaut and scientist talks</li><li>A live stream of totality</li></ul></div>
+            <div class="card"><h3>Heritage &amp; Culture</h3><ul class="ticks"><li>Egyptologist-led temple access</li><li>Local artisans and Nubian music</li><li>Commemorative art prints</li></ul></div>
+            <div class="card"><h3>Wellness</h3><ul class="ticks"><li>Sunrise yoga on the boat deck</li><li>Cooling and hydration stations</li><li>Shaded rest spaces</li></ul></div>
+            <div class="card"><h3>Hospitality</h3><ul class="ticks"><li>Naming a viewing area</li><li>Food and beverage serving rights</li><li>Co-branded journey merchandise</li></ul></div>
+          </div>
+        </div>
+        <div class="frame-img"><img data-src="media/omda-balloon.jpg" alt=""></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 · WHAT YOU TAKE HOME -->
+  <section class="slide dark">
+    <div class="bg kb heavy"><img data-src="media/river-deck-gathering.jpg" alt=""></div>
+    <div class="chrome"><span class="sec">Sponsorship</span><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
+    <div class="pad">
+      <div class="eyebrow">Content &amp; Reporting</div>
+      <h2>You leave with <em>the story, not just the memory.</em></h2>
+      <div class="cards c3" style="width:calc(var(--u)*70)">
+        <div class="card"><h3>Coverage team</h3><p>Professional photography and video coverage of your experience and activation.</p></div>
+        <div class="card"><h3>Delivered media</h3><p>Full production and post-event delivery of content, with your branding featured throughout.</p></div>
+        <div class="card"><h3>Partner report</h3><p>A recap of what was delivered, reach across our channels, and audience highlights.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18 · PATRONAGE -->
   <section class="slide">
     <div class="chrome"><span class="sec">Patronage</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad">
       <div class="split">
         <div>
           <div class="eyebrow">Patronage</div>
-          <h2>Shared experiences <em class="nw">can realign us.</em></h2>
-          <p>Egypt Eclipse is being shaped with patrons who believe shared experiences can help realign our people and the planet with the Cosmos. Patronage opens the circle to those who carry a gift but not the full cost of the journey.</p>
+          <h2>Patrons open the circle <em>to more voices.</em></h2>
+          <p>Egypt Eclipse is being shaped with patrons who believe shared experiences can help realign our people and the planet with the Cosmos. Patronage welcomes those who carry a gift but not the full cost of the journey.</p>
           <div class="cards c2" style="margin-top:calc(var(--u)*1.8)">
             <div class="card"><h3>Artistic Inclusion</h3><p>Artists, musicians, and facilitators brought into the circle.</p></div>
             <div class="card"><h3>Scientific Dialogue</h3><p>Astronauts, scientists, and educators on the science of totality.</p></div>
@@ -480,12 +568,12 @@
     </div>
   </section>
 
-  <!-- 16 · PRODUCERS & PARTNERS -->
+  <!-- 19 · PRODUCERS & PARTNERS -->
   <section class="slide fit">
     <div class="chrome"><span class="sec">Partners</span><img class="mark" src="media/ee-logo-brown.png" alt=""><img class="imxp" src="media/imxp-logo_black.png" alt=""><span class="foot">Sponsorship Deck</span></div>
     <div class="pad center">
       <div class="eyebrow">Behind the Gathering</div>
-      <h2>Experienced hands on the ground.</h2>
+      <h2>Produced by the team behind Iceland Eclipse.</h2>
       <div class="cards c3" style="margin-top:calc(var(--u)*2.4);text-align:left">
         <div class="card"><div class="logo-tile" style="background:var(--limestone)"><img data-src="media/imxp-logo_black.png" alt="IMXP"></div><h3>IMXP · Producer</h3><p>The preeminent eclipse event producer, behind Texas Eclipse 2024 and Iceland Eclipse 2026, and organizer of the Eclipse Trilogy.</p></div>
         <div class="card"><div class="logo-tile" style="background:#6e8a8f"><img data-src="media/Enev-Footer-Logo.png" alt="ENEV Travel"></div><h3>ENEV Travel · Host in Egypt</h3><p>More than 26 years reshaping how the world experiences Egypt, with six branches and over 1.7 million travelers welcomed.</p></div>
@@ -494,17 +582,19 @@
     </div>
   </section>
 
-  <!-- 17 · CONTACT -->
+  <!-- 20 · CONTACT -->
   <section class="slide dark fit">
-    <div class="bg kb even"><img data-src="media/omda-balloon.jpg" alt=""></div>
+    <div class="bg kb even"><img data-src="media/sphinx-dusk.jpg" alt=""></div>
     <div class="pad center">
-      <div class="eyebrow">Let's Connect</div>
-      <h1>Meet us at <em>the threshold.</em></h1>
+      <div class="eyebrow">Next Step</div>
+      <h1>Let's design your moment <em>in Egypt.</em></h1>
+      <p style="margin-top:calc(var(--u)*1.4)">Book a 30-minute call to shape a partnership around your goals.</p>
+      <a class="cta" href="mailto:mitch@im-xp.com?subject=Egypt%20Eclipse%20partnership">Book a call with Mitch</a>
       <div class="contacts">
-        <div class="contact"><div class="nm">Mitch Morales</div><div class="rl">Founder &amp; CEO, IMXP</div><a href="mailto:mitch@im-xp.com">mitch@im-xp.com</a><a href="tel:+15126385946">+1 512 638 5946</a></div>
-        <div class="contact"><div class="nm">Joshua Barber</div><div class="rl">Director of Special Projects</div><a href="mailto:joshua@im-xp.com">joshua@im-xp.com</a><a href="tel:+18322655735">+1 832 265 5735</a></div>
+        <div class="contact primary"><div class="nm">Mitch Morales</div><div class="rl">Founder &amp; CEO, IMXP</div><a href="mailto:mitch@im-xp.com">mitch@im-xp.com</a><a href="tel:+15126385946">+1 512 638 5946</a></div>
+        <div class="contact second"><div class="nm">Joshua Barber</div><div class="rl">Director of Special Projects</div><a href="mailto:joshua@im-xp.com">joshua@im-xp.com</a><a href="tel:+18322655735">+1 832 265 5735</a></div>
       </div>
-      <p class="small" style="margin-top:calc(var(--u)*3)"><a href="https://egypt-eclipse.com" style="color:inherit">egypt-eclipse.com</a> &nbsp;·&nbsp; <a href="mailto:marhaba@egypt-eclipse.com" style="color:inherit">marhaba@egypt-eclipse.com</a></p>
+      <p class="small" style="margin-top:calc(var(--u)*2.4)"><a href="https://egypt-eclipse.com" style="color:inherit">egypt-eclipse.com</a></p>
     </div>
   </section>
 
@@ -513,43 +603,73 @@
 
 <script>
   const slides=[...document.querySelectorAll('.slide')];
-  const ctr=document.getElementById('ctr');
+  const ctr=document.getElementById('ctr'), live=document.getElementById('live');
   const film=document.getElementById('film'), soundbtn=document.getElementById('soundbtn');
-  let i=0, wantSound=false;
-  slides.forEach((_,n)=>{const b=document.createElement('button');b.setAttribute('aria-label','Slide '+(n+1));b.onclick=()=>go(n);ctr.appendChild(b);});
+  const phone=()=>matchMedia('(max-width:900px) and (orientation:portrait)').matches;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i=0, wantSound=false, lastChange=0;
+
+  // "Prepared for" personalisation: ?for=Brand%20Name
+  const forName=new URLSearchParams(location.search).get('for');
+  if(forName){const el=document.getElementById('prepared');el.textContent='Prepared for '+forName.slice(0,60);el.hidden=false;}
+
+  slides.forEach((s,n)=>{
+    s.setAttribute('role','group');s.setAttribute('aria-roledescription','slide');s.setAttribute('aria-label',(n+1)+' of '+slides.length);
+    const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Go to slide '+(n+1));b.onclick=()=>go(n);ctr.appendChild(b);
+  });
+  const loadImgs=s=>s&&s.querySelectorAll('img[data-src]').forEach(im=>{im.src=im.dataset.src;im.removeAttribute('data-src');});
 
   function go(n){
+    const prev=i;
     i=Math.max(0,Math.min(slides.length-1,n));
-    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
-    [...ctr.children].forEach((d,k)=>d.classList.toggle('on',k===i));
-    [i-1,i,i+1].forEach(k=>{const s=slides[k];if(!s)return;
-      s.querySelectorAll('img[data-src]').forEach(im=>{im.src=im.dataset.src;im.removeAttribute('data-src');});});
+    lastChange=Date.now();
+    slides.forEach((s,k)=>{const on=k===i;s.classList.toggle('active',on);s.toggleAttribute('inert',!on);s.setAttribute('aria-hidden',on?'false':'true');});
+    [...ctr.children].forEach((d,k)=>{d.classList.toggle('on',k===i);d.toggleAttribute('aria-current',k===i);});
+    [i-1,i,i+1].forEach(k=>loadImgs(slides[k]));
     slides[i].scrollTop=0;
-    if(slides[i].contains(film)){
-      film.muted=!wantSound; const p=film.play();
-      if(p&&p.catch)p.catch(()=>{film.muted=true;soundbtn.hidden=false;film.play().catch(()=>{});});
+    if(slides[i].contains(film)&&!reduce){
+      film.muted=!wantSound;const p=film.play();
+      if(p&&p.catch)p.catch(()=>{film.muted=true;film.play().catch(()=>{});soundbtn.hidden=false;});
       soundbtn.hidden=!film.muted;
-    } else { film.pause(); }
-    history.replaceState(null,'','#'+(i+1));
+    }else{film.pause();if(slides[i].contains(film))soundbtn.hidden=false;}
+    if(prev!==i||!live.textContent){const h=slides[i].querySelector('h1,h2');live.textContent='Slide '+(i+1)+' of '+slides.length+(h?': '+h.textContent:'');}
+    history.replaceState(null,'',location.search+'#'+(i+1));
   }
-  soundbtn.addEventListener('click',e=>{e.stopPropagation();wantSound=true;film.muted=false;film.play();soundbtn.hidden=true;});
+  soundbtn.addEventListener('click',e=>{e.stopPropagation();wantSound=true;film.muted=false;film.play().catch(()=>{});soundbtn.hidden=true;});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)film.pause();else if(slides[i].contains(film)&&!reduce)film.play().catch(()=>{});});
 
   document.addEventListener('keydown',e=>{
-    if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(i+1);}
-    if(['ArrowLeft','PageUp'].includes(e.key))go(i-1);
-    if(e.key==='Home')go(0); if(e.key==='End')go(slides.length-1);
+    if(e.altKey||e.ctrlKey||e.metaKey||e.target.closest('input,textarea,[contenteditable]'))return;
+    if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();go(i+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(i-1);}
+    else if(e.key==='Home')go(0); else if(e.key==='End')go(slides.length-1);
+    else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen().catch(()=>{});}
   });
   document.querySelector('.edge.l').onclick=()=>go(i-1);
   document.querySelector('.edge.r').onclick=()=>go(i+1);
-  let sx=0,sy=0;
-  document.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
-  document.addEventListener('touchend',e=>{const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
-    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3)go(i+(dx<0?1:-1));},{passive:true});
-  let wl=0;
+
+  let sx=0,sy=0,skip=false;
+  document.addEventListener('touchstart',e=>{skip=!!e.target.closest('[data-prevent-swipe],a,button')||e.touches.length>1;sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(skip||(window.visualViewport&&visualViewport.scale>1.03))return;
+    const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3)go(i+(dx<0?1:-1));
+  },{passive:true});
+
   document.addEventListener('wheel',e=>{
-    if(matchMedia('(max-width:900px) and (orientation:portrait)').matches)return;
-    const t=Date.now();if(t-wl<800)return;
-    if(Math.abs(e.deltaY)>30||Math.abs(e.deltaX)>30){wl=t;go(i+((e.deltaY+e.deltaX)>0?1:-1));}},{passive:true});
+    if(phone())return;
+    if(Date.now()-lastChange<800)return;
+    const d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
+    if(Math.abs(d)>=30)go(i+(d>0?1:-1));
+  },{passive:true});
+
+  // warm every other image once the deck has settled, so fast flicking never shows blanks
+  const idle=window.requestIdleCallback||(f=>setTimeout(f,1));
+  setTimeout(()=>idle(()=>slides.forEach(loadImgs)),3000);
+  // print / PDF: every slide visible with images loaded
+  window.addEventListener('beforeprint',()=>slides.forEach(s=>{loadImgs(s);s.removeAttribute('inert');}));
+  if(new URLSearchParams(location.search).has('print'))slides.forEach(loadImgs);
+
   go((parseInt(location.hash.slice(1))||1)-1);
 </script>
 </body>

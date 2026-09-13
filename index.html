@@ -228,6 +228,7 @@
   .contact.primary .nm{font-size:calc(var(--u)*3.4)}
   .contact.second .nm{font-size:calc(var(--u)*2.2)}
   .cta{display:inline-block;margin-top:calc(var(--u)*2.4);font-family:var(--label);font-size:calc(var(--u)*1.05);letter-spacing:.2em;text-transform:uppercase;color:#0f0c09;background:var(--gold-soft);border-radius:40px;padding:calc(var(--u)*.9) calc(var(--u)*2.2);text-decoration:none}
+  picture{display:contents}
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   @media (max-width:900px) and (orientation:portrait){ .cards.c5{grid-template-columns:1fr 1fr} .cards[style*="width"]{width:auto!important;grid-template-columns:1fr} }
   @media print{
@@ -250,7 +251,7 @@
 
   <!-- 1 · COVER -->
   <section class="slide dark cover active">
-    <div class="bg kb"><img src="media/eclipse-luxor.jpg" alt="" fetchpriority="high"></div>
+    <div class="bg kb"><picture><source type="image/avif" srcset="media/r/eclipse-luxor-640.avif 640w, media/r/eclipse-luxor-960.avif 960w, media/r/eclipse-luxor-1280.avif 1280w, media/r/eclipse-luxor-1920.avif 1920w" sizes="(orientation:portrait) 150vh, 100vw"><img src="media/r/eclipse-luxor-1920.jpg" srcset="media/r/eclipse-luxor-640.jpg 640w, media/r/eclipse-luxor-960.jpg 960w, media/r/eclipse-luxor-1280.jpg 1280w, media/r/eclipse-luxor-1920.jpg 1920w" sizes="(orientation:portrait) 150vh, 100vw" alt="" fetchpriority="high" decoding="async"></picture></div>
     <div class="pad">
       <div class="date">30 JULY TO 9 AUGUST 2027</div>
       <h1 class="sr-only">Egypt Eclipse 2027</h1>
@@ -311,7 +312,7 @@
 
   <!-- 5 · FILM -->
   <section class="slide dark">
-    <div class="vidwrap"><video id="film" src="media/announcement.mp4" poster="media/video-poster.jpg" playsinline loop preload="none" data-prevent-swipe aria-label="Egypt Eclipse announcement film"></video></div>
+    <div class="vidwrap"><video id="film" data-hls="media/film/master.m3u8" data-mp4="media/film/film-720.mp4" data-poster="media/r/video-poster-1920.jpg" playsinline loop preload="none" data-prevent-swipe aria-label="Egypt Eclipse announcement film"></video></div>
     <button class="soundbtn" id="soundbtn" type="button">Tap for sound</button>
   </section>
 
@@ -616,7 +617,60 @@
     s.setAttribute('role','group');s.setAttribute('aria-roledescription','slide');s.setAttribute('aria-label',(n+1)+' of '+slides.length);
     const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Go to slide '+(n+1));b.onclick=()=>go(n);ctr.appendChild(b);
   });
-  const loadImgs=s=>s&&s.querySelectorAll('img[data-src]').forEach(im=>{im.src=im.dataset.src;im.removeAttribute('data-src');});
+  // Responsive HD images: media/r holds AVIF + JPEG at several widths (scripts/responsive_images.py).
+  // Each image gets srcset + a sizes value measured from how big it is drawn, so phones fetch small files
+  // and retina desktops fetch the full-resolution version.
+  const MEDIA={"ari-eisenstat":{"ar":1.0,"w":[640,900]},"ben-haldeman":{"ar":0.7484,"w":[479]},"ceremony-circle":{"ar":1.5035,"w":[640,960,1280,1920]},"columns":{"ar":0.6665,"w":[640,960,1280,1333]},"community-access":{"ar":0.6665,"w":[640,960,1280,1333]},"dendera-temple":{"ar":1.7778,"w":[640,960,1280,1920]},"eclipse-luxor":{"ar":1.5,"w":[640,960,1280,1920]},"eclipse-still":{"ar":1.7778,"w":[640,960,1280,1920]},"eclipse-trilogy-map":{"ar":1.5,"w":[640,960,1280,1536]},"egypt-eclipse-map":{"ar":0.6667,"w":[640,960,1024]},"egypt-humans-07":{"ar":0.7995,"w":[640,960,1280,1535]},"giza-pyramids":{"ar":1.5,"w":[640,960,1280,1920]},"henk-rogers":{"ar":1.0067,"w":[640,750]},"jaz-crown-prince-drone":{"ar":1.5284,"w":[640,960,1024]},"marsam-night":{"ar":1.5,"w":[640,960]},"nile-aerial":{"ar":1.7778,"w":[640,960,1280,1920]},"omar-samra":{"ar":1.0,"w":[640,900]},"river-deck-gathering":{"ar":2.23,"w":[640,960,1280,1920]},"sara-sabry":{"ar":1.273,"w":[640,900]},"sian-proctor":{"ar":0.75,"w":[640,675]},"sphinx-dusk":{"ar":1.7778,"w":[640,960,1280,1920]},"threshold":{"ar":0.6667,"w":[640,960,1024]},"video-poster":{"ar":1.7778,"w":[640,960,1280,1920]}};
+  let avifOK=false;
+  const avifReady=new Promise(r=>{const im=new Image();im.onload=()=>{avifOK=im.width>0;r()};im.onerror=()=>r();
+    im.src='data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
+    setTimeout(r,300);});
+  function setImg(im,full){
+    const src=im.dataset.src;im.removeAttribute('data-src');
+    const mm=src.match(/media\/([^\/]+)\.(jpe?g|png|webp)$/i), info=mm&&MEDIA[mm[1]];
+    if(!info){im.src=src;return;}
+    const ext=avifOK?'avif':'jpg', ws=info.w;
+    if(full){im.src='media/r/'+mm[1]+'-'+ws[ws.length-1]+'.jpg';return;}
+    const r=im.getBoundingClientRect();
+    let need=Math.max(r.width,r.height*info.ar)||innerWidth;
+    im.sizes=Math.ceil(need)+'px';
+    im.srcset=ws.map(w=>'media/r/'+mm[1]+'-'+w+'.'+ext+' '+w+'w').join(', ');
+    im.src='media/r/'+mm[1]+'-'+ws[Math.min(1,ws.length-1)]+'.jpg';
+  }
+  const loadImgs=(s,full)=>s&&s.querySelectorAll('img[data-src]').forEach(im=>setImg(im,full));
+
+  // Adaptive film: HLS ladder (480p/720p/1080p) starts fast and climbs to 1080p as bandwidth allows.
+  // Safari plays HLS natively; other browsers load hls.js (light build) only when the film slide is near.
+  const filmIdx=slides.findIndex(s=>s.contains(film));
+  let filmReady=null, hls=null;
+  function prepFilm(){
+    if(filmReady)return filmReady;
+    if(film.dataset.poster){film.poster=film.dataset.poster;}
+    filmReady=new Promise(res=>{
+      if(film.canPlayType('application/vnd.apple.mpegurl')){film.src=film.dataset.hls;return res();}
+      const sc=document.createElement('script');
+      sc.src='https://cdn.jsdelivr.net/npm/hls.js@1.7.3/dist/hls.light.min.js';
+      sc.onload=()=>{
+        if(window.Hls&&Hls.isSupported()){
+          hls=new Hls({capLevelToPlayerSize:true,startLevel:-1,autoStartLoad:false,maxBufferLength:20});
+          hls.loadSource(film.dataset.hls);hls.attachMedia(film);
+        }else film.src=film.dataset.mp4;
+        res();
+      };
+      sc.onerror=()=>{film.src=film.dataset.mp4;res();};
+      document.head.appendChild(sc);
+    });
+    return filmReady;
+  }
+  function playFilm(){
+    prepFilm().then(()=>{
+      if(!slides[i].contains(film))return;
+      if(hls)hls.startLoad();
+      film.muted=!wantSound;const p=film.play();
+      if(p&&p.catch)p.catch(()=>{film.muted=true;film.play().catch(()=>{});soundbtn.hidden=false;});
+      soundbtn.hidden=!film.muted;
+    });
+  }
 
   function go(n){
     const prev=i;
@@ -624,18 +678,16 @@
     lastChange=Date.now();
     slides.forEach((s,k)=>{const on=k===i;s.classList.toggle('active',on);s.toggleAttribute('inert',!on);s.setAttribute('aria-hidden',on?'false':'true');});
     [...ctr.children].forEach((d,k)=>{d.classList.toggle('on',k===i);d.toggleAttribute('aria-current',k===i);});
-    [i-1,i,i+1].forEach(k=>loadImgs(slides[k]));
+    avifReady.then(()=>[i-1,i,i+1,i+2].forEach(k=>loadImgs(slides[k])));
+    if(Math.abs(i-filmIdx)<=1)prepFilm();
     slides[i].scrollTop=0;
-    if(slides[i].contains(film)&&!reduce){
-      film.muted=!wantSound;const p=film.play();
-      if(p&&p.catch)p.catch(()=>{film.muted=true;film.play().catch(()=>{});soundbtn.hidden=false;});
-      soundbtn.hidden=!film.muted;
-    }else{film.pause();if(slides[i].contains(film))soundbtn.hidden=false;}
+    if(slides[i].contains(film)&&!reduce){playFilm();}
+    else{film.pause();if(hls)hls.stopLoad();if(slides[i].contains(film)){prepFilm();soundbtn.hidden=false;}}
     if(prev!==i||!live.textContent){const h=slides[i].querySelector('h1,h2');live.textContent='Slide '+(i+1)+' of '+slides.length+(h?': '+h.textContent:'');}
     history.replaceState(null,'',location.search+'#'+(i+1));
   }
-  soundbtn.addEventListener('click',e=>{e.stopPropagation();wantSound=true;film.muted=false;film.play().catch(()=>{});soundbtn.hidden=true;});
-  document.addEventListener('visibilitychange',()=>{if(document.hidden)film.pause();else if(slides[i].contains(film)&&!reduce)film.play().catch(()=>{});});
+  soundbtn.addEventListener('click',e=>{e.stopPropagation();wantSound=true;prepFilm().then(()=>{if(hls)hls.startLoad();film.muted=false;film.play().catch(()=>{});});soundbtn.hidden=true;});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)film.pause();else if(slides[i].contains(film)&&!reduce)playFilm();});
 
   document.addEventListener('keydown',e=>{
     if(e.altKey||e.ctrlKey||e.metaKey||e.target.closest('input,textarea,[contenteditable]'))return;
@@ -663,11 +715,9 @@
   },{passive:true});
 
   // warm every other image once the deck has settled, so fast flicking never shows blanks
-  const idle=window.requestIdleCallback||(f=>setTimeout(f,1));
-  setTimeout(()=>idle(()=>slides.forEach(loadImgs)),3000);
   // print / PDF: every slide visible with images loaded
-  window.addEventListener('beforeprint',()=>slides.forEach(s=>{loadImgs(s);s.removeAttribute('inert');}));
-  if(new URLSearchParams(location.search).has('print'))slides.forEach(loadImgs);
+  window.addEventListener('beforeprint',()=>slides.forEach(s=>{loadImgs(s,true);s.removeAttribute('inert');}));
+  if(new URLSearchParams(location.search).has('print'))slides.forEach(s=>loadImgs(s,true));
 
   go((parseInt(location.hash.slice(1))||1)-1);
 </script>

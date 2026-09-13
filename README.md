@@ -37,6 +37,11 @@ Personalised cover: add `?for=Brand%20Name` to the URL to show "Prepared for Bra
 - Audience stats use Iceland Eclipse 2026 (75 countries, avg age 35, 53/47), labeled as such.
 - Confirm contacts (Mitch primary CTA, Joshua Barber secondary, from the Canva info deck).
 
+## Content Editor sheet
+"Egypt Eclipse Sponsorship Deck - Content Editor" (Mitch's Drive, editors mitch@ and lee@):
+https://docs.google.com/spreadsheets/d/1zJ2mPxqfljSPBriNZsqGMFGL_MrKF7HYvL3E51anD9w/edit
+One row per slide. Reference only: edits do not auto-apply. Snapshot used to build it: `sources/content-editor-slides.json`.
+
 ## View
 Arrow keys, click the screen edges, swipe, or the dots. Deep link with `#12`.
 On phones in portrait each slide fills the screen and scrolls.

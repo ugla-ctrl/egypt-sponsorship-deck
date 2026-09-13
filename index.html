@@ -652,7 +652,8 @@
       sc.src='https://cdn.jsdelivr.net/npm/hls.js@1.7.3/dist/hls.light.min.js';
       sc.onload=()=>{
         if(window.Hls&&Hls.isSupported()){
-          hls=new Hls({capLevelToPlayerSize:true,startLevel:-1,autoStartLoad:false,maxBufferLength:20});
+          const c=navigator.connection, est=c&&c.downlink?c.downlink*1e6*0.8:6e6;
+          hls=new Hls({capLevelToPlayerSize:true,startLevel:-1,abrEwmaDefaultEstimate:est,testBandwidth:true,autoStartLoad:false,maxBufferLength:20});
           hls.loadSource(film.dataset.hls);hls.attachMedia(film);
         }else film.src=film.dataset.mp4;
         res();

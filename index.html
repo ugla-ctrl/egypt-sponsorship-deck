@@ -64,7 +64,7 @@
   .rule{width:calc(var(--u)*9);height:1px;background:currentColor;opacity:.45;margin:calc(var(--u)*1.6) auto}
 
   /* photo backgrounds */
-  .bg{position:absolute;inset:0}
+  .bg{position:absolute;inset:0;overflow:hidden}
   .bg img,.bg video{width:100%;height:100%;object-fit:cover;display:block}
   .slide.active .bg.kb img{animation:kb 14s ease-out both}
   @keyframes kb{from{transform:scale(1.07)}to{transform:scale(1)}}
@@ -178,13 +178,17 @@
   .nw{white-space:nowrap}
   /* nav */
   #ctr{position:fixed;bottom:.9vh;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:30}
-  #ctr button{width:7px;height:7px;border-radius:50%;border:0;background:#f3ead740;cursor:pointer;padding:0;transition:all .3s}
-  #ctr button.on{background:var(--gold-soft);width:20px;border-radius:4px}
+  #ctr{gap:0}
+  #ctr button{width:17px;height:24px;border:0;background:none;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;transition:width .3s}
+  #ctr button::before{content:'';width:7px;height:7px;border-radius:4px;background:#f3ead740;transition:all .3s}
+  #ctr button.on{width:30px}
+  #ctr button.on::before{background:var(--gold-soft);width:20px}
+  #ctr button:focus-visible{outline:1px solid var(--gold-soft);outline-offset:-4px;border-radius:6px}
   .edge{position:fixed;top:0;bottom:0;width:7vw;z-index:25;cursor:pointer}
   .edge.l{left:0}.edge.r{right:0}
 
   /* phones in portrait: the card fills the screen and each slide scrolls */
-  @media (max-width:900px) and (orientation:portrait){
+  @media (max-width:900px) and (orientation:portrait), (max-height:500px) and (orientation:landscape){
     :root{--u:2.35vw}
     #frame{padding:0}
     #stage{width:100vw;height:100dvh;aspect-ratio:auto;border-radius:0;container-type:normal}
@@ -230,7 +234,7 @@
   .cta{display:inline-block;margin-top:calc(var(--u)*2.4);font-family:var(--label);font-size:calc(var(--u)*1.05);letter-spacing:.2em;text-transform:uppercase;color:#0f0c09;background:var(--gold-soft);border-radius:40px;padding:calc(var(--u)*.9) calc(var(--u)*2.2);text-decoration:none}
   picture{display:contents}
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  @media (max-width:900px) and (orientation:portrait){ .cards.c5{grid-template-columns:1fr 1fr} .cards[style*="width"]{width:auto!important;grid-template-columns:1fr} }
+  @media (max-width:900px) and (orientation:portrait), (max-height:500px) and (orientation:landscape){ .cards.c5{grid-template-columns:1fr 1fr} .cards[style*="width"]{width:auto!important;grid-template-columns:1fr} }
   @media print{
     @page{size:1920px 1080px;margin:0}
     html,body{overflow:visible!important;height:auto!important;background:#fff!important}
@@ -241,6 +245,70 @@
     *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;animation:none!important;transition:none!important}
     #ctr,.edge,.soundbtn{display:none!important}
     .dark .card{background:rgba(15,12,9,.6)!important;backdrop-filter:none!important}
+  }
+
+  /* readable floor for small labels on tablets and small laptops (desktop sizes unchanged) */
+  .chrome .sec,.chrome .foot{font-size:max(10px,calc(var(--u)*.72))}
+  .eyebrow{font-size:max(11px,calc(var(--u)*1.05))}
+  .card .meta,.stat .l,.tier .count,.cover .kind,cite,.contact .rl,.matrix tr.grp td{font-size:max(10px,calc(var(--u)*.8))}
+  .tier .why,.card .one{font-size:max(9.5px,calc(var(--u)*.7))}
+  .src,.small,.person .rl{font-size:max(11px,calc(var(--u)*1))}
+  .matrix th{font-size:max(10px,calc(var(--u)*.9))}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  html,body{overscroll-behavior:none}
+  @media (max-width:900px) and (orientation:portrait), (max-height:500px) and (orientation:landscape){
+    body{font-size:15px}
+    p{font-size:15px;line-height:1.55}
+    .card p,ul.ticks li,.tier .who{font-size:14px}
+    h2{font-size:clamp(24px,7.2vw,34px)}
+    h3{font-size:12.5px;letter-spacing:.12em}
+    .eyebrow{font-size:11.5px}
+    .card .meta,.stat .l,.tier .count,cite,.contact .rl,.matrix tr.grp td{font-size:11px;letter-spacing:.12em}
+    .tier .why,.card .one{font-size:10.5px}
+    .src,.small,.person .rl{font-size:12.5px}
+    .person .nm{font-size:16px}
+    .stat .n{font-size:clamp(28px,9vw,40px)}
+    blockquote{font-size:18px!important}
+    .contact a{font-size:15px}
+    .lead{font-size:18px}
+    .cover .tag{font-size:16px}
+    .cover .date{font-size:12px}
+    table.matrix{font-size:12px}
+    .matrix th{font-size:10px}
+    .dot{width:9px;height:9px}
+    .pad{padding-left:max(calc(var(--u)*6),env(safe-area-inset-left));padding-right:max(calc(var(--u)*6),env(safe-area-inset-right))}
+    #ctr{bottom:max(.6vh,env(safe-area-inset-bottom))}
+    #ctr button{width:13px}
+    #ctr button.on{width:26px}
+    .soundbtn{font-size:12px;padding:10px 18px}
+    .cta{font-size:12px;padding:12px 22px}
+  }
+  /* landscape phones: wider screen, so keep two columns and a lower header */
+  @media (max-height:500px) and (orientation:landscape){
+    :root{--u:1.25vw}
+    .pad{padding-top:64px;padding-bottom:56px}
+    .chrome .mark{width:120px;top:14px}
+    .cards.c3,.cards.c4,.cards.c5,.stats.s4,.people{grid-template-columns:repeat(3,1fr)}
+    .split,.split.wide{grid-template-columns:1.1fr .9fr;align-items:start}
+    .frame-img{height:70vh;position:sticky;top:0}
+    .cover .logo{width:60%}
+    .arc{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (max-width:380px){ .cards.c2,.stats.s3{grid-template-columns:1fr 1fr} .cards.c2 h3{letter-spacing:.06em;font-size:11.5px} .cards.c2{gap:8px} .card{padding:12px} }
+  h3{overflow-wrap:break-word;hyphens:auto}
+  .matrix .short{display:none}
+  @media (max-width:900px) and (orientation:portrait){
+    .matrixwrap{overflow:visible}
+    table.matrix{table-layout:fixed;width:100%}
+    .matrix th:first-child,.matrix td:first-child{width:50%}
+    .matrix th{font-size:10.5px;letter-spacing:.04em;padding:8px 0}
+    .matrix .full{display:none}.matrix .short{display:inline}
+    .matrix td{padding:8px 2px;font-size:13px;line-height:1.35}
+    .matrix td:first-child{padding-right:8px}
+  }
+  @media (max-width:900px) and (orientation:portrait), (max-height:500px) and (orientation:landscape){
+    #ctr{background:rgba(15,12,9,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:20px;padding:0 8px}
+    .pad{padding-bottom:calc(var(--u)*24)}
   }
 </style>
 </head>
@@ -470,7 +538,7 @@
       <h2 style="margin-bottom:0">Higher tiers buy access, not just logos.</h2>
       <div class="matrixwrap">
       <table class="matrix">
-        <thead><tr><th scope="col"><span class="sr-only">Benefit</span></th><th scope="col">Solar</th><th scope="col">Lunar</th><th scope="col">Orbital</th><th scope="col">Satellite</th></tr></thead>
+        <thead><tr><th scope="col"><span class="sr-only">Benefit</span></th><th scope="col"><span class="full">Solar</span><span class="short" aria-hidden="true">Sol</span></th><th scope="col"><span class="full">Lunar</span><span class="short" aria-hidden="true">Lun</span></th><th scope="col"><span class="full">Orbital</span><span class="short" aria-hidden="true">Orb</span></th><th scope="col"><span class="full">Satellite</span><span class="short" aria-hidden="true">Sat</span></th></tr></thead>
         <tbody>
           <tr class="grp"><td colspan="5">Signage &amp; Branding</td></tr>
           <tr><td>Naming: "Company presents Egypt Eclipse"</td><td><span class="dot" aria-label="Full"></span></td><td class="dash">–</td><td class="dash">–</td><td class="dash">–</td></tr>
@@ -605,7 +673,7 @@
   const slides=[...document.querySelectorAll('.slide')];
   const ctr=document.getElementById('ctr'), live=document.getElementById('live');
   const film=document.getElementById('film'), soundbtn=document.getElementById('soundbtn');
-  const phone=()=>matchMedia('(max-width:900px) and (orientation:portrait)').matches;
+  const phone=()=>matchMedia('(max-width:900px) and (orientation:portrait), (max-height:500px) and (orientation:landscape)').matches;
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   let i=0, wantSound=false, lastChange=0;
 

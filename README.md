@@ -11,7 +11,9 @@ single `index.html`, hosted on GitHub Pages: https://ugla-ctrl.github.io/egypt-s
   signature experiences, activation ideas.
 - **Iceland track record stats:** 4,200 participants, 75 countries, 250 artists & speakers,
   50M impressions, NYT and CNN (same figures as the Iceland recap deck).
-- **Imagery:** egypt-eclipse.com assets and the announcement film (re-encoded to 720p).
+- **Imagery:** egypt-eclipse.com originals at full resolution (JPEG q88) and the announcement film at 1080p
+  (H.264 CRF 19). Three stills (Dendera temple, Nile aerial, Sphinx at dusk) are taken from the 1080p film
+  because the site only has small versions of the photos they replace.
 
 ## Slides (20)
 Cover · The Moment · The Place · The Voyage · Film · Programming · Who's in the Path ·

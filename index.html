@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Egypt Eclipse · Sponsorship Deck</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#07060a;color:#f4efe6;font-family:Inter,system-ui,sans-serif;overflow:hidden}
+  .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:8vh 8vw;opacity:0;pointer-events:none;transition:opacity .6s ease}
+  .slide.active{opacity:1;pointer-events:auto}
+  .eyebrow{font:500 .85rem Inter,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#d9a441;margin-bottom:1.5rem}
+  h1{font:800 clamp(2.5rem,7vw,6rem)/1 Archivo,sans-serif;letter-spacing:-.02em}
+  h2{font:800 clamp(2rem,4.5vw,3.75rem)/1.05 Archivo,sans-serif}
+  p{font-size:clamp(1rem,1.6vw,1.35rem);line-height:1.5;max-width:46rem;margin-top:1.5rem;color:#cfc7b8}
+  .dots{position:fixed;bottom:4vh;left:50%;transform:translateX(-50%);display:flex;gap:.6rem;z-index:5}
+  .dots button{width:9px;height:9px;border-radius:50%;border:0;background:#f4efe655;cursor:pointer}
+  .dots button.on{background:#d9a441}
+</style>
+</head>
+<body>
+
+<section class="slide">
+  <div class="eyebrow">Egypt Eclipse · Sponsorship</div>
+  <h1>Partner with Egypt Eclipse</h1>
+  <p>Draft deck. Content coming soon.</p>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Placeholder</div>
+  <h2>Slide content to be added</h2>
+</section>
+
+<nav class="dots"></nav>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')], dots=document.querySelector('.dots');
+  let i=0;
+  slides.forEach((_,n)=>{const b=document.createElement('button');b.ariaLabel='Slide '+(n+1);b.onclick=()=>go(n);dots.appendChild(b)});
+  function go(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('active',k===i));[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));history.replaceState(null,'','#'+(i+1))}
+  addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key))go(i+1);if(['ArrowLeft','PageUp'].includes(e.key))go(i-1)});
+  addEventListener('click',e=>{if(e.target.closest('.dots'))return;go(e.clientX>innerWidth/2?i+1:i-1)});
+  let x0=null;addEventListener('touchstart',e=>x0=e.touches[0].clientX);addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(dx<0?i+1:i-1);x0=null});
+  go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>

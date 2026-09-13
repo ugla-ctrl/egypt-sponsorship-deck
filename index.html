@@ -654,6 +654,14 @@
         if(window.Hls&&Hls.isSupported()){
           const c=navigator.connection, est=c&&c.downlink?c.downlink*1e6*0.8:6e6;
           hls=new Hls({capLevelToPlayerSize:true,startLevel:-1,abrEwmaDefaultEstimate:est,testBandwidth:true,autoStartLoad:false,maxBufferLength:20});
+          hls.on(Hls.Events.MANIFEST_PARSED,(e,d)=>{
+            // start near the right quality instead of always climbing from 480p
+            const lv=d.levels.map((l,k)=>({k,b:l.bitrate,h:l.height})).sort((x,y)=>x.b-y.b);
+            const maxH=film.clientHeight*(devicePixelRatio||1);
+            let pick=lv[0].k;
+            lv.forEach(l=>{if(l.b*1.25<=est&&l.h<=Math.max(maxH*1.1,480))pick=l.k;});
+            hls.startLevel=pick;
+          });
           hls.loadSource(film.dataset.hls);hls.attachMedia(film);
         }else film.src=film.dataset.mp4;
         res();
